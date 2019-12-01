@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdf.redis.dao.TestTableMapper">
+
+  <resultMap id="BaseResultMap" type="com.tdf.redis.bean.TestTable">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+
+  <select id="getTestTableById" parameterType="java.lang.Long" resultType="com.tdf.redis.bean.TestTable">
+		select * from test_table where id=#{id}
+  </select>
+
+  <update id="update" parameterType="com.tdf.redis.bean.TestTable">
+        update test_table
+        set name = #{name},password = #{password},update_time = now()
+        where id = #{id}
+   </update>
+
+  <update id="delete" parameterType="java.lang.Long">
+        update test_table
+        set active=0
+        where id = #{id}
+   </update>
+
+  <!--扩展sql-->
+
+</mapper>
